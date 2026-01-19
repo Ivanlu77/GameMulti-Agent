@@ -1,25 +1,27 @@
 # 🎮 GameAgent - Multi-Agent Game Development System
 
-一个多智能体游戏开发系统，能够根据你的需求自动设计、开发、测试并交付完整的游戏。
+A multi-agent game development system that automatically designs, develops, tests, and delivers complete games based on your requirements.
 
-## ✨ 特性
+**[中文文档](README_zh.md)**
 
-- **🎨 Designer Agent** - 将你的想法转化为详细的游戏设计文档
-- **💻 Developer Agent** - 编写完整可运行的游戏代码
-- **🎮 Player Agent** - 自动测试游戏，发现bug和问题
-- **📋 Reviewer Agent** - 评估游戏质量，决定是否需要改进
-- **🔄 自动迭代** - 自动修复问题直到游戏达到交付标准
+## ✨ Features
 
-## 🏗️ 系统架构
+- **🎨 Designer Agent** - Transforms your ideas into detailed game design documents
+- **💻 Developer Agent** - Writes complete, runnable game code
+- **🎮 Player Agent** - Automatically tests games to find bugs and issues
+- **📋 Reviewer Agent** - Evaluates game quality and decides if improvements are needed
+- **🔄 Auto-Iteration** - Automatically fixes issues until the game meets delivery standards
+
+## 🏗️ System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     用户需求输入                              │
+│                     User Requirements                        │
 └─────────────────────────┬───────────────────────────────────┘
                           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                   Orchestrator (协调者)                       │
-│         负责协调所有Agent，管理工作流程和迭代                    │
+│                   Orchestrator                               │
+│         Coordinates all Agents, manages workflow             │
 └────┬──────────────┬──────────────┬──────────────┬───────────┘
      ▼              ▼              ▼              ▼
 ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
@@ -29,19 +31,20 @@
                           │
                           ▼
               ┌───────────────────┐
-              │   完美游戏交付     │
+              │  Perfect Game     │
+              │    Delivered      │
               └───────────────────┘
 ```
 
-## 🚀 快速开始
+## 🚀 Quick Start
 
-### 1. 安装依赖
+### 1. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. 设置 API Key
+### 2. Set API Key
 
 ```bash
 # Windows PowerShell
@@ -54,35 +57,35 @@ set OPENAI_API_KEY=your-api-key-here
 export OPENAI_API_KEY="your-api-key-here"
 ```
 
-### 3. 运行
+### 3. Run
 
 ```bash
-# 交互式创建游戏
+# Interactive game creation
 python main.py create
 
-# 运行演示
+# Run demo
 python main.py demo
 
-# 检查系统配置
+# Check system configuration
 python main.py check
 
-# 查看所有 agents 信息
+# View all agents info
 python main.py agents
 ```
 
-## 📖 使用方法
+## 📖 Usage
 
-### 命令行模式
+### Command Line Mode
 
 ```bash
-# 交互式模式 - 系统会询问你想要什么游戏
+# Interactive mode - System will ask what game you want
 python main.py create
 
-# 直接指定参数
-python main.py create --desc "一个贪吃蛇游戏" --genre arcade --platform pygame
+# Specify parameters directly
+python main.py create --desc "A snake game" --genre arcade --platform pygame
 ```
 
-### 编程模式
+### Programming Mode
 
 ```python
 import asyncio
@@ -90,149 +93,149 @@ from GameAgent import GameOrchestrator, Config
 from GameAgent.models import UserRequirement, GameGenre, GamePlatform
 
 async def create_my_game():
-    # 定义游戏需求
+    # Define game requirements
     requirement = UserRequirement(
-        description="创建一个贪吃蛇游戏，蛇吃到食物会变长，撞墙或撞到自己游戏结束",
+        description="Create a snake game where the snake grows when eating food, game over when hitting wall or itself",
         genre=GameGenre.ARCADE,
         platform=GamePlatform.PYGAME,
-        additional_features=["分数显示", "速度递增"]
+        additional_features=["Score display", "Speed increase"]
     )
     
-    # 创建协调器并运行
+    # Create orchestrator and run
     config = Config.from_env()
     orchestrator = GameOrchestrator(config)
     
     game_code, review = await orchestrator.develop_game(requirement)
     
-    print(f"游戏创建完成！分数: {review.overall_score}/100")
+    print(f"Game created! Score: {review.overall_score}/100")
     return game_code, review
 
-# 运行
+# Run
 asyncio.run(create_my_game())
 ```
 
-## 🎯 支持的游戏类型
+## 🎯 Supported Game Types
 
-| 类型 | 描述 | 示例 |
-|------|------|------|
-| `arcade` | 街机游戏 | 贪吃蛇、打砖块、太空入侵者 |
-| `puzzle` | 益智游戏 | 俄罗斯方块、数独、消消乐 |
-| `platformer` | 平台跳跃 | 马里奥风格游戏 |
-| `rpg` | 角色扮演 | 简单回合制战斗 |
-| `strategy` | 策略游戏 | 塔防、简单RTS |
-| `card` | 卡牌游戏 | 21点、扑克 |
-| `simulation` | 模拟游戏 | 简单经营模拟 |
-| `adventure` | 冒险游戏 | 文字冒险 |
+| Type | Description | Examples |
+|------|-------------|----------|
+| `arcade` | Arcade games | Snake, Breakout, Space Invaders |
+| `puzzle` | Puzzle games | Tetris, Sudoku, Match-3 |
+| `platformer` | Platform games | Mario-style games |
+| `rpg` | Role-playing | Simple turn-based combat |
+| `strategy` | Strategy games | Tower defense, Simple RTS |
+| `card` | Card games | Blackjack, Poker |
+| `simulation` | Simulation games | Simple business simulation |
+| `adventure` | Adventure games | Text adventures |
 
-## 🖥️ 支持的平台
+## 🖥️ Supported Platforms
 
-| 平台 | 描述 |
-|------|------|
-| `pygame` | Python Pygame 2D游戏（推荐） |
-| `web` | HTML5 Canvas 网页游戏 |
-| `terminal` | 终端/控制台游戏 |
+| Platform | Description |
+|----------|-------------|
+| `pygame` | Python Pygame 2D games (Recommended) |
+| `web` | HTML5 Canvas web games |
+| `terminal` | Terminal/Console games |
 
-## 📁 项目结构
+## 📁 Project Structure
 
 ```
 GameAgent/
-├── GameAgent/              # 核心包
+├── GameAgent/              # Core package
 │   ├── __init__.py
-│   ├── config.py          # 配置管理
-│   ├── models.py          # 数据模型
-│   ├── orchestrator.py    # 多Agent协调器
+│   ├── config.py          # Configuration management
+│   ├── models.py          # Data models
+│   ├── orchestrator.py    # Multi-Agent orchestrator
 │   └── agents/            # AI Agents
-│       ├── base.py        # Agent基类
-│       ├── designer.py    # 设计师Agent
-│       ├── developer.py   # 开发者Agent
-│       ├── player.py      # 玩家/测试Agent
-│       └── reviewer.py    # 评审Agent
-├── examples/              # 示例代码
+│       ├── base.py        # Agent base class
+│       ├── designer.py    # Designer Agent
+│       ├── developer.py   # Developer Agent
+│       ├── player.py      # Player/Tester Agent
+│       └── reviewer.py    # Reviewer Agent
+├── examples/              # Example code
 │   ├── simple_game.py
 │   └── custom_agents.py
-├── games/                 # 生成的游戏输出目录
-├── main.py               # 主程序入口
-├── requirements.txt      # 依赖列表
+├── games/                 # Generated games output directory
+├── main.py               # Main entry point
+├── requirements.txt      # Dependencies
 └── README.md
 ```
 
-## ⚙️ 配置选项
+## ⚙️ Configuration Options
 
-可以通过环境变量配置系统：
+Configure the system via environment variables:
 
-| 变量 | 描述 | 默认值 |
-|------|------|--------|
-| `OPENAI_API_KEY` | OpenAI API密钥 | - |
-| `ANTHROPIC_API_KEY` | Anthropic API密钥 | - |
-| `MAX_ITERATIONS` | 最大迭代次数 | 10 |
-| `DEBUG_MODE` | 调试模式 | false |
-| `OUTPUT_DIR` | 输出目录 | ./games |
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `OPENAI_API_KEY` | OpenAI API key | - |
+| `ANTHROPIC_API_KEY` | Anthropic API key | - |
+| `MAX_ITERATIONS` | Maximum iterations | 10 |
+| `DEBUG_MODE` | Debug mode | false |
+| `OUTPUT_DIR` | Output directory | ./games |
 
-## 🔧 自定义Agent配置
+## 🔧 Custom Agent Configuration
 
 ```python
 from GameAgent.config import AgentConfig, Config
 
 config = Config.from_env()
 
-# 更有创意的设计师
+# More creative designer
 config.designer_config = AgentConfig(
     model="gpt-4-turbo-preview",
-    temperature=0.9,  # 更高的创造力
+    temperature=0.9,  # Higher creativity
     max_tokens=4096
 )
 
-# 更精确的开发者
+# More precise developer
 config.developer_config = AgentConfig(
     model="gpt-4-turbo-preview",
-    temperature=0.3,  # 更低的随机性
+    temperature=0.3,  # Lower randomness
     max_tokens=8192
 )
 ```
 
-## 📝 示例游戏描述
+## 📝 Example Game Descriptions
 
-### 贪吃蛇
+### Snake Game
 ```
-创建一个经典的贪吃蛇游戏：
-- 蛇从屏幕中心开始
-- 食物随机出现在屏幕上
-- 吃到食物蛇变长，分数增加
-- 撞墙或撞到自己游戏结束
-- 显示当前分数
-- 随着分数增加，蛇移动速度加快
-```
-
-### Pong 双人对战
-```
-创建一个双人Pong游戏：
-- 左右两边各有一个挡板
-- 球在两个挡板之间弹跳
-- 没接住球对方得分
-- 先得5分获胜
-- 控制：W/S控制左边，上/下键控制右边
+Create a classic snake game:
+- Snake starts from the center of the screen
+- Food appears randomly on the screen
+- Eating food makes the snake longer and increases score
+- Game over when hitting wall or itself
+- Display current score
+- Snake speed increases as score goes up
 ```
 
-### 俄罗斯方块
+### Pong Two-Player
 ```
-创建一个俄罗斯方块游戏：
-- 7种不同形状的方块从上方落下
-- 玩家可以旋转和移动方块
-- 填满一行会消除并得分
-- 方块堆到顶部游戏结束
-- 显示下一个方块预览
-- 随着分数增加，下落速度加快
+Create a two-player Pong game:
+- Each side has a paddle
+- Ball bounces between the two paddles
+- Missing the ball gives opponent a point
+- First to 5 points wins
+- Controls: W/S for left side, Up/Down arrows for right side
 ```
 
-## 🤝 工作流程
+### Tetris
+```
+Create a Tetris game:
+- 7 different shaped blocks fall from the top
+- Player can rotate and move blocks
+- Completing a row clears it and scores points
+- Game over when blocks reach the top
+- Show next block preview
+- Falling speed increases as score goes up
+```
 
-1. **需求分析** - 你描述想要的游戏
-2. **设计阶段** - Designer Agent 创建游戏设计文档
-3. **开发阶段** - Developer Agent 编写完整代码
-4. **测试阶段** - Player Agent 模拟玩游戏并找bug
-5. **评审阶段** - Reviewer Agent 评估游戏质量
-6. **迭代改进** - 如果未达标，自动返回修复问题
-7. **交付** - 达到75分以上自动交付到 games 目录
+## 🤝 Workflow
+
+1. **Requirements Analysis** - You describe the game you want
+2. **Design Phase** - Designer Agent creates game design document
+3. **Development Phase** - Developer Agent writes complete code
+4. **Testing Phase** - Player Agent simulates playing and finds bugs
+5. **Review Phase** - Reviewer Agent evaluates game quality
+6. **Iterative Improvement** - Automatically returns to fix issues if not meeting standards
+7. **Delivery** - Automatically delivered to games directory when score reaches 75+
 
 ## 📄 License
 
@@ -241,5 +244,3 @@ MIT License
 ---
 
 **Made with ❤️ by GameAgent Team**
-
-
