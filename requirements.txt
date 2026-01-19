@@ -1,0 +1,46 @@
+# GameAgent - Multi-Agent Game Development System
+# Core Dependencies
+
+# LLM Integration
+openai>=1.12.0
+anthropic>=0.18.0
+langchain>=0.1.0
+langchain-openai>=0.0.5
+langchain-anthropic>=0.1.0
+
+# Multi-Agent Framework
+langgraph>=0.0.20
+
+# Game Development
+pygame>=2.5.0
+
+# Utilities
+pydantic>=2.5.0
+python-dotenv>=1.0.0
+rich>=13.7.0
+typer>=0.9.0
+
+# Code Execution & Safety
+docker>=7.0.0
+ast-grep-py>=0.1.0
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+
+# ======= Vision & Input Control (for Player Agent) =======
+# Screen Capture
+mss>=9.0.0                    # Fast cross-platform screen capture
+Pillow>=10.0.0                # Image processing
+
+# Input Simulation
+pyautogui>=0.9.54             # Cross-platform keyboard/mouse control
+pydirectinput>=1.0.4          # DirectInput for games (Windows)
+
+# Windows-specific (optional, for window management)
+pywin32>=306; sys_platform == "win32"
+
+# Image analysis
+numpy>=1.24.0                 # For frame comparison
+
+
